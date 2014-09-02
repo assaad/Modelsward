@@ -3,6 +3,7 @@ package org.kevoree.modeling.genetic.cloudtest;
 
 
 
+import org.kevoree.modeling.genetic.cloudtest.fitnesses.NumVmFitness;
 import org.kevoree.modeling.genetic.cloudtest.fitnesses.PriceFitness;
 import org.kevoree.modeling.genetic.cloudtest.fitnesses.TimeFitness;
 import org.kevoree.modeling.genetic.cloudtest.mutators.AddInstanceMutator;
@@ -113,6 +114,7 @@ public class SampleRunner {
         engine.addOperator(new ChangeWeightMutator());
         engine.addOperator(new RemoveInstanceMutator());
 
+        engine.addFitnessFunction(new NumVmFitness(),0,Context.maxMachines, FitnessOrientation.MINIMIZE);
         engine.addFitnessFunction(new PriceFitness(),0,Context.maxPrice, FitnessOrientation.MINIMIZE);
         engine.addFitnessFunction(new TimeFitness(),0,Context.maxTime, FitnessOrientation.MINIMIZE);
 
@@ -131,12 +133,16 @@ public class SampleRunner {
         for (Solution sol : result) {
             Set af  = sol.getFitnesses();
 
+            Cloud cc = (Cloud) sol.getModel();
+
             Iterator iter = af.iterator();
             while (iter.hasNext())
             {
                 FitnessFunction tf= (FitnessFunction) iter.next();
+
                 System.out.print(tf.getClass().getName().replace("org.kevoree.modeling.genetic.cloudtest.fitnesses.","")+" "+ String.format("%.5f", sol.getRawScoreForFitness(tf))+" ");
             }
+           // System.out.print(" VM "+cc.getInstances().size());
             System.out.println();
         }
         System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");

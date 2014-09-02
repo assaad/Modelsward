@@ -13,6 +13,7 @@ public class Context {
 
     public static double maxTime=15000;
     public static double maxPrice=100000;
+    public static int maxMachines = 300;
 
     public static void setTime(Cloud c){
         for(Software s: c.getSoftwares()){

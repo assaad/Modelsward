@@ -33,21 +33,23 @@ public class AddInstanceMutator implements MutationOperator<Cloud> {
 
     @Override
     public void mutate(@JetValueParameter(name = "model") @NotNull Cloud cloud, @JetValueParameter(name = "params") @NotNull MutationParameters mutationParameters) {
-        int next= rand.nextInt(Context.cloud.getInstances().size());
-        VmInstance original =Context.cloud.getInstances().get(next);
-        VmInstance vm = pf.createVmInstance();
-        vm.setName(original.getName());
-        vm.setCpu(original.getCpu());
-        vm.setPrice(original.getPrice());
-        for(Software s: cloud.getSoftwares()){
-            Task t= pf.createTask();
-            vm.addTasks(t);
-            t.setSoftware(s);
-            t.setWeight(rand.nextInt(100));
+        if(cloud.getInstances().size()<Context.maxMachines) {
+            int next = rand.nextInt(Context.cloud.getInstances().size());
+            VmInstance original = Context.cloud.getInstances().get(next);
+            VmInstance vm = pf.createVmInstance();
+            vm.setName(original.getName());
+            vm.setCpu(original.getCpu());
+            vm.setPrice(original.getPrice());
+            for (Software s : cloud.getSoftwares()) {
+                Task t = pf.createTask();
+                vm.addTasks(t);
+                t.setSoftware(s);
+                t.setWeight(rand.nextInt(100));
+            }
+            cloud.addInstances(vm);
+            Context.distributeCpu(vm);
+            Context.setTime(cloud);
         }
-        cloud.addInstances(vm);
-        Context.distributeCpu(vm);
-        Context.setTime(cloud);
 
     }
 }
