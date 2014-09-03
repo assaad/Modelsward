@@ -13,7 +13,9 @@ public class Context {
 
     public static double maxTime=15000;
     public static double maxPrice=100000;
-    public static int maxMachines = 300;
+    public static int maxMachines = 100;
+    public static double mutationProba = 0.01;
+
 
     public static void setTime(Cloud c){
         for(Software s: c.getSoftwares()){
@@ -37,6 +39,12 @@ public class Context {
             return software.getCpuh() / vcpu;
         }
         return maxTime;
+    }
+
+    public static void distributeCpu(Cloud c){
+        for(VmInstance v: c.getInstances()){
+            distributeCpu(v);
+        }
     }
 
 
