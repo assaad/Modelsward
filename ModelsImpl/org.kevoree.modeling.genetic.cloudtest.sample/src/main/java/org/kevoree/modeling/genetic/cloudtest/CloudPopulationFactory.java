@@ -42,6 +42,7 @@ public class CloudPopulationFactory implements PopulationFactory<Cloud> {
                 soft.setCpuh(str.getCpuh());
                 soft.setTime(Context.maxTime);
                 cloud.addSoftwares(soft);
+                soft.setRecursiveReadOnly();
             }
 
             int x= rand.nextInt(Context.maxMachines);

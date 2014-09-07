@@ -9,17 +9,13 @@
     <packaging>pom</packaging>
 
     <properties>
-        <kmf.version>3.5.0</kmf.version>
+        <kmf.version>3.5.1</kmf.version>
     </properties>
 
     <modules>
 		<module>ModelsImpl/org.kevoree.modeling.genetic.cloudtest.model</module>
         <module>ModelsImpl/org.kevoree.modeling.genetic.cloudtest.sample</module>
         <module>TraditionalImpl</module>
-
-
-        <!--   <module>kevoree/org.kevoree.modeling.genetic.kevoree.model</module>
-           <module>kevoree/org.kevoree.modeling.genetic.kevoree.sample</module>      -->
     </modules>
 
     <build>
@@ -42,19 +38,5 @@
             </plugin>
         </plugins>
     </build>
-
-
-
-    <distributionManagement>
-        <repository>
-            <id>kevoree.oss.release</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>kevoree.oss.snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>
