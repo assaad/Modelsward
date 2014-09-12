@@ -31,6 +31,7 @@ public class DeleteInstanceMutator extends Mutation {
             return solution;
         }
 
+
         int newr= r-1;
 
         int x = rand.nextInt(r);

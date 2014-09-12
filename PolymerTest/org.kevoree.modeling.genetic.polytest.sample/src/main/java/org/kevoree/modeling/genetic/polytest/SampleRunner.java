@@ -1,11 +1,10 @@
-package org.kevoree.modeling.genetic.cloudtest;
+package org.kevoree.modeling.genetic.polytest;
 
 
-import org.kevoree.modeling.genetic.cloudtest.fitnesses.PriceFitness;
-import org.kevoree.modeling.genetic.cloudtest.fitnesses.TimeFitness;
-import org.kevoree.modeling.genetic.cloudtest.mutators.AddInstanceMutator;
-import org.kevoree.modeling.genetic.cloudtest.mutators.ChangeWeightMutator;
-import org.kevoree.modeling.genetic.cloudtest.mutators.RemoveInstanceMutator;
+
+import org.kevoree.modeling.genetic.polytest.fitnesses.PriceFitness;
+import org.kevoree.modeling.genetic.polytest.fitnesses.TimeFitness;
+import org.kevoree.modeling.genetic.polytest.mutators.RemoveInstanceMutator;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
 import org.kevoree.modeling.optimization.api.fitness.FitnessOrientation;
 import org.kevoree.modeling.optimization.api.solution.Solution;
@@ -100,15 +99,13 @@ public class SampleRunner {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Context.cloud= load();
 
         GeneticEngine<Cloud> engine = new GeneticEngine<Cloud>();
         engine.setAlgorithm(GeneticAlgorithm.HypervolumeNSGAII);
 
 
-        engine.addOperator(new AddInstanceMutator());
-        engine.addOperator(new ChangeWeightMutator());
         engine.addOperator(new RemoveInstanceMutator());
 
         //engine.addFitnessFunction(new NumVmFitness(),0,Context.maxMachines, FitnessOrientation.MINIMIZE);
@@ -118,7 +115,7 @@ public class SampleRunner {
 
         engine.setPopulationFactory(new CloudPopulationFactory().setSize(20));
 
-        engine.setMaxGeneration(10000)  ;
+        engine.setMaxGeneration(1000000)  ;
 
 
         long startTime = System.nanoTime();
@@ -127,7 +124,7 @@ public class SampleRunner {
         long duration = endTime - startTime;
 
 
-        for (Solution sol : result) {
+    /*    for (Solution sol : result) {
             Set af  = sol.getFitnesses();
 
             Cloud cc = (Cloud) sol.getModel();
@@ -136,13 +133,14 @@ public class SampleRunner {
             while (iter.hasNext())
             {
                 FitnessFunction tf= (FitnessFunction) iter.next();
-
                 System.out.print(tf.getClass().getName().replace("org.kevoree.modeling.genetic.cloudtest.fitnesses.","")+" "+ String.format("%.5f", sol.getRawScoreForFitness(tf))+" ");
             }
            // System.out.print(" VM "+cc.getInstances().size());
             System.out.println();
-        }
+        }*/
         System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
+
+        Thread.sleep(10000);
     }
 
 

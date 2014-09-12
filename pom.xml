@@ -15,6 +15,8 @@
     <modules>
 		<module>ModelsImpl/org.kevoree.modeling.genetic.cloudtest.model</module>
         <module>ModelsImpl/org.kevoree.modeling.genetic.cloudtest.sample</module>
+		<module>PolymerTest/org.kevoree.modeling.genetic.polytest.model</module>
+        <module>PolymerTest/org.kevoree.modeling.genetic.polytest.sample</module>
         <module>TraditionalImpl</module>
     </modules>
 

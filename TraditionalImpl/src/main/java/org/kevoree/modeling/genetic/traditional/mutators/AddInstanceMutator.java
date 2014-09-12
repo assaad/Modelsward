@@ -27,7 +27,7 @@ public class AddInstanceMutator extends Mutation {
 
         Solution solution = (Solution) object;
         int r= solution.getDecisionVariables().length/ (Context.softwareNum +1);
-        if(r>Context.maxMachines){
+        if(r>=Context.maxMachines){
             return solution;
         }
 

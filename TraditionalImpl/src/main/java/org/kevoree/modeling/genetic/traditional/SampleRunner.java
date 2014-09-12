@@ -3,6 +3,16 @@ package org.kevoree.modeling.genetic.traditional;
 import jmetal.core.Algorithm;
 import jmetal.core.Problem;
 import jmetal.core.SolutionSet;
+import jmetal.core.Variable;
+import jmetal.encodings.variable.Int;
+import org.kevoree.modeling.genetic.cloudtest.*;
+import org.kevoree.modeling.genetic.cloudtest.fitnesses.PriceFitness;
+import org.kevoree.modeling.genetic.cloudtest.fitnesses.TimeFitness;
+import polymer.Cloud;
+import polymer.Software;
+import polymer.Task;
+import polymer.VmInstance;
+import polymer.factory.DefaultPolymerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -82,6 +92,18 @@ public class SampleRunner {
     }
 
 
+    public static Cloud createCloud() {
+        DefaultPolymerFactory pf = new DefaultPolymerFactory();
+        Cloud cloud = pf.createCloud();
+        for (int i=0; i<TraditionalProblem.softwareCpuh.length;i++) {
+            Software soft = pf.createSoftware();
+            soft.setCpuh(TraditionalProblem.softwareCpuh[i]);
+            soft.setTime(org.kevoree.modeling.genetic.cloudtest.Context.maxTime);
+            cloud.addSoftwares(soft);
+        }
+        return cloud;
+    }
+
     public static void main(String[] args) {
 
         try {
@@ -100,6 +122,8 @@ public class SampleRunner {
 
             System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
 
+            Thread.sleep(10000);
+
 
          /*   for (int i = 0; i < pop.size(); i++) {
                 Variable v = pop.get(i).getDecisionVariables()[0];
@@ -107,12 +131,45 @@ public class SampleRunner {
 
             }*/
 
+
+      /*      DefaultPolymerFactory pf = new DefaultPolymerFactory();
+
             for (int i = 0; i < pop.size(); i++) {
+                System.out.print("jmetal ");
                 for (int j = 0; j < pop.get(i).getNumberOfObjectives(); j++) {
                     System.out.print(pop.get(i).getObjective(j) + " ");
                 }
+
+                Cloud c= createCloud();
+                Variable[] var = pop.get(i).getDecisionVariables();
+                int r= var.length/ (Context.softwareNum+1);
+                for(int k=0;k<r;k++){
+                    VmInstance v = pf.createVmInstance();
+                    v.setPrice(TraditionalProblem.vmPrice[(int)var[k].getValue()]);
+                    v.setCpu(TraditionalProblem.vmCPU[(int)var[k].getValue()]);
+
+                    int m=0;
+                    for(int l=r+k*Context.softwareNum; l<r+(k+1)*Context.softwareNum;l++){
+                        Task t= pf.createTask();
+                        t.setInstance(v);
+                        for(int y=0;y<7;y++){
+                            if(c.getSoftwares().get(y).getCpuh()==TraditionalProblem.softwareCpuh[m])
+                                t.setSoftware(c.getSoftwares().get(y));
+                        }
+                        t.setWeight((int)var[l].getValue());
+                        m++;
+                    }
+                    c.addInstances(v);
+                }
+                org.kevoree.modeling.genetic.cloudtest.Context.distributeCpu(c);
+                org.kevoree.modeling.genetic.cloudtest.Context.setTime(c);
+                double timx= new TimeFitness().evaluate(c, null);
+                double prix = new PriceFitness().evaluate(c,null);
+                TraditionalProblem ttt = new TraditionalProblem();
+                ttt.evaluate(pop.get(i));
+                System.out.print(" polymer "+ timx + " "+ prix);
                 System.out.println("");
-            }
+            }*/
         } catch (Exception e) {
        e.printStackTrace();
          }
