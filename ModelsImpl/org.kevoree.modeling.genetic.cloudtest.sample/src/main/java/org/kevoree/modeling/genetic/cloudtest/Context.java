@@ -5,6 +5,8 @@ import polymer.Software;
 import polymer.Task;
 import polymer.VmInstance;
 
+import java.util.ArrayList;
+
 /**
  * Created by assaa_000 on 9/2/2014.
  */
@@ -19,27 +21,45 @@ public class Context {
 
     public static void setTime(Cloud c) {
         for (Software s : c.getSoftwares()) {
-            s.setTime(getTime(s));
+            setTime(s,c);
         }
 
     }
 
 
-    private static double getTime(Software software) {
-        if (software.getTasks().size() == 0) {
+    private static double setTime(Software software, Cloud cloud) {
+
+        ArrayList<Task> al = new ArrayList<Task>();
+
+        for(VmInstance v: cloud.getInstances()){
+            for(Task t: v.getTasks()){
+                if(t.getSoftware()==software){
+                    al.add(t);
+                }
+            }
+        }
+
+        if (al.size() == 0) {
             return Context.maxTime;
         }
 
         double vcpu = 0;
 
 
-        for (Task t : software.getTasks()) {
+        for (Task t : al) {
             vcpu += t.getCpu();
         }
+        double time = maxTime;
+
         if (vcpu != 0) {
-            return software.getCpuh() / vcpu;
+            time= software.getCpuh() / vcpu;
         }
-        return maxTime;
+
+        for (Task t : al) {
+           t.setTime(time);
+        }
+
+        return time;
     }
 
     public static void distributeCpu(Cloud c) {

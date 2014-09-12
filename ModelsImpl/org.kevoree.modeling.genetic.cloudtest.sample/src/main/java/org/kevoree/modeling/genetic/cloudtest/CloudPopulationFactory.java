@@ -40,7 +40,6 @@ public class CloudPopulationFactory implements PopulationFactory<Cloud> {
                 Software soft = pf.createSoftware();
                 soft.setName(str.getName());
                 soft.setCpuh(str.getCpuh());
-                soft.setTime(Context.maxTime);
                 cloud.addSoftwares(soft);
                 soft.setRecursiveReadOnly();
             }

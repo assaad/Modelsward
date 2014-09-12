@@ -98,7 +98,7 @@ public class SampleRunner {
         for (int i=0; i<TraditionalProblem.softwareCpuh.length;i++) {
             Software soft = pf.createSoftware();
             soft.setCpuh(TraditionalProblem.softwareCpuh[i]);
-            soft.setTime(org.kevoree.modeling.genetic.cloudtest.Context.maxTime);
+            //soft.setTime(org.kevoree.modeling.genetic.cloudtest.Context.maxTime);
             cloud.addSoftwares(soft);
         }
         return cloud;
@@ -132,7 +132,7 @@ public class SampleRunner {
             }*/
 
 
-      /*      DefaultPolymerFactory pf = new DefaultPolymerFactory();
+           DefaultPolymerFactory pf = new DefaultPolymerFactory();
 
             for (int i = 0; i < pop.size(); i++) {
                 System.out.print("jmetal ");
@@ -169,7 +169,7 @@ public class SampleRunner {
                 ttt.evaluate(pop.get(i));
                 System.out.print(" polymer "+ timx + " "+ prix);
                 System.out.println("");
-            }*/
+            }
         } catch (Exception e) {
        e.printStackTrace();
          }

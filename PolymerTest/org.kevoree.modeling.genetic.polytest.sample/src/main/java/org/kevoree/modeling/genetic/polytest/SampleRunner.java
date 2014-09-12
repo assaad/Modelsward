@@ -10,6 +10,7 @@ import org.kevoree.modeling.optimization.api.fitness.FitnessOrientation;
 import org.kevoree.modeling.optimization.api.solution.Solution;
 import org.kevoree.modeling.optimization.engine.genetic.GeneticAlgorithm;
 import org.kevoree.modeling.optimization.engine.genetic.GeneticEngine;
+import polymer.Application;
 import polymer.Cloud;
 import polymer.Software;
 import polymer.VmInstance;

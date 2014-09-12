@@ -34,7 +34,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <ecore>Polymer.mm</ecore>
+                            <ecore>Polymer.ecore</ecore>
                             <js>false</js>
                             <events>true</events>
                         </configuration>

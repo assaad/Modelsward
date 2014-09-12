@@ -17,8 +17,8 @@ public class PriceFitness implements FitnessFunction<Cloud> {
         for(VmInstance v: cloud.getInstances()){
             double maxtime=0;
             for(Task t: v.getTasks()){
-                if(t.getWeight()!=0&& t.getSoftware().getTime()>maxtime){
-                    maxtime=t.getSoftware().getTime();
+                if(t.getWeight()!=0&& t.getTime()>maxtime){
+                    maxtime=t.getTime();
                 }
             }
             price+= v.getPrice()*maxtime;

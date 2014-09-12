@@ -1,4 +1,3 @@
-
 class polymer.Cloud  {
     @contained
     instances : polymer.VmInstance[0,*]
@@ -17,12 +16,12 @@ class polymer.VmInstance  {
 class polymer.Software  {
     cpuh : Double
     name : String
-    time : Double
 }
 
 class polymer.Task  {
     weight : Int
     cpu : Double
+    time : Double
     software : polymer.Software
     instance : polymer.VmInstance
 }
