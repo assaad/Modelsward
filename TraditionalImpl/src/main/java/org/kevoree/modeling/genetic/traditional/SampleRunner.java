@@ -122,7 +122,7 @@ public class SampleRunner {
 
             System.out.println("Duration: "+(double)duration / 1000000000.0+" seconds");
 
-            Thread.sleep(10000);
+          //  Thread.sleep(10000);
 
 
          /*   for (int i = 0; i < pop.size(); i++) {
@@ -136,11 +136,11 @@ public class SampleRunner {
 
             for (int i = 0; i < pop.size(); i++) {
                 System.out.print("jmetal ");
-                for (int j = 0; j < pop.get(i).getNumberOfObjectives(); j++) {
+                for (int j = 0; j < 2; j++) {
                     System.out.print(pop.get(i).getObjective(j) + " ");
                 }
 
-                Cloud c= createCloud();
+        /*        Cloud c= createCloud();
                 Variable[] var = pop.get(i).getDecisionVariables();
                 int r= var.length/ (Context.softwareNum+1);
                 for(int k=0;k<r;k++){
@@ -151,7 +151,8 @@ public class SampleRunner {
                     int m=0;
                     for(int l=r+k*Context.softwareNum; l<r+(k+1)*Context.softwareNum;l++){
                         Task t= pf.createTask();
-                        t.setInstance(v);
+                        v.addTasks(t);
+
                         for(int y=0;y<7;y++){
                             if(c.getSoftwares().get(y).getCpuh()==TraditionalProblem.softwareCpuh[m])
                                 t.setSoftware(c.getSoftwares().get(y));
@@ -167,7 +168,7 @@ public class SampleRunner {
                 double prix = new PriceFitness().evaluate(c,null);
                 TraditionalProblem ttt = new TraditionalProblem();
                 ttt.evaluate(pop.get(i));
-                System.out.print(" polymer "+ timx + " "+ prix);
+                System.out.print(" polymer "+ timx + " "+ prix);*/
                 System.out.println("");
             }
         } catch (Exception e) {

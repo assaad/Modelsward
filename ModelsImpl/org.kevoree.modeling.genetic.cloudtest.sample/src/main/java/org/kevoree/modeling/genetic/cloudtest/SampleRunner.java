@@ -34,6 +34,7 @@ public class SampleRunner {
 
     public static Cloud load(){
 
+
         DefaultPolymerFactory pf = new DefaultPolymerFactory();
         Cloud cloud = pf.createCloud();
 
@@ -118,7 +119,7 @@ public class SampleRunner {
 
         engine.setPopulationFactory(new CloudPopulationFactory().setSize(20));
 
-        engine.setMaxGeneration(10000)  ;
+        engine.setMaxGeneration(100)  ;
 
 
         long startTime = System.nanoTime();

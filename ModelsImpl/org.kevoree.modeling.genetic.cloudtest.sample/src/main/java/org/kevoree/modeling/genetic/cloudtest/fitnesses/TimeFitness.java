@@ -1,5 +1,6 @@
 package org.kevoree.modeling.genetic.cloudtest.fitnesses;
 
+import org.kevoree.modeling.genetic.cloudtest.Context;
 import org.kevoree.modeling.optimization.api.GenerationContext;
 import org.kevoree.modeling.optimization.api.fitness.FitnessFunction;
 import polymer.Cloud;
@@ -14,6 +15,9 @@ public class TimeFitness implements FitnessFunction<Cloud> {
     public double evaluate(Cloud cloud, GenerationContext<Cloud> cloudGenerationContext) {
 
         double time =0;
+        if(cloud.getInstances().size()==0)
+            return Context.maxTime;
+
         for(Task t: cloud.getInstances().get(0).getTasks()){
             time+= t.getTime();
         }

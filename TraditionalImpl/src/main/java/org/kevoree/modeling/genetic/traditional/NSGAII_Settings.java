@@ -41,8 +41,8 @@ public class NSGAII_Settings extends Settings {
         Object [] problemParams = {"Real"};
             problem_ = problem;
         // Default settings
-        populationSize_              =2000   ;
-        maxEvaluations_              = 1000 ;
+        populationSize_              =20   ;
+        maxEvaluations_              = 10000 ;
         mutationProbability_         = 0.01 ;
         crossoverProbability_        = 0.0 ;
         mutationDistributionIndex_   = 20 ;

@@ -23,5 +23,4 @@ class polymer.Task  {
     cpu : Double
     time : Double
     software : polymer.Software
-    instance : polymer.VmInstance
 }
