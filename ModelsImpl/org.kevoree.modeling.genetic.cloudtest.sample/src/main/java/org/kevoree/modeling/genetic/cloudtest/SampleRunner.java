@@ -105,7 +105,7 @@ public class SampleRunner {
         Context.cloud= load();
 
         GeneticEngine<Cloud> engine = new GeneticEngine<Cloud>();
-        engine.setAlgorithm(GeneticAlgorithm.HypervolumeNSGAII);
+        engine.setAlgorithm(GeneticAlgorithm.NSGAII);
 
 
         engine.addOperator(new AddInstanceMutator());
@@ -117,7 +117,7 @@ public class SampleRunner {
         engine.addFitnessFunction(new TimeFitness(),0,Context.maxTime, FitnessOrientation.MINIMIZE);
 
 
-        engine.setPopulationFactory(new CloudPopulationFactory().setSize(20));
+        engine.setPopulationFactory(new CloudPopulationFactory().setSize(10));
 
         engine.setMaxGeneration(100)  ;
 

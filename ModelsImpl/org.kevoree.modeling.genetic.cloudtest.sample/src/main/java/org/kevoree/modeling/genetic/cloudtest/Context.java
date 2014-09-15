@@ -20,46 +20,25 @@ public class Context {
 
 
     public static void setTime(Cloud c) {
-        for (Software s : c.getSoftwares()) {
-            setTime(s,c);
-        }
-
-    }
+        double[] st= new double[7];
 
 
-    private static double setTime(Software software, Cloud cloud) {
-
-        ArrayList<Task> al = new ArrayList<Task>();
-
-        for(VmInstance v: cloud.getInstances()){
-            for(Task t: v.getTasks()){
-                if(t.getSoftware()==software){
-                    al.add(t);
-                }
+        for(VmInstance v: c.getInstances()) {
+            for (Task t : v.getTasks()) {
+                st[t.getSoftware().getId()]+=t.getCpu();
             }
         }
 
-        if (al.size() == 0) {
-            return Context.maxTime;
+        for(VmInstance v: c.getInstances()) {
+            for (Task t : v.getTasks()) {
+                if(st[t.getSoftware().getId()]==0) {
+                    t.setTime(maxTime);
+                }
+                else {
+                    t.setTime(t.getSoftware().getCpuh()/st[t.getSoftware().getId()]);
+                }
+            }
         }
-
-        double vcpu = 0;
-
-
-        for (Task t : al) {
-            vcpu += t.getCpu();
-        }
-        double time = maxTime;
-
-        if (vcpu != 0) {
-            time= software.getCpuh() / vcpu;
-        }
-
-        for (Task t : al) {
-           t.setTime(time);
-        }
-
-        return time;
     }
 
     public static void distributeCpu(Cloud c) {

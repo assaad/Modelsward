@@ -40,6 +40,7 @@ public class RemoveInstanceMutator implements MutationOperator<Cloud> {
         VmInstance vmtoRemove =cloud.getInstances().get(remove);
         vmtoRemove.removeAllTasks();
         cloud.removeInstances(vmtoRemove);
+
         Context.setTime(cloud);
     }
 }

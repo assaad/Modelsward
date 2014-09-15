@@ -4,6 +4,8 @@ import jmetal.core.Problem;
 import jmetal.core.Solution;
 import jmetal.util.JMException;
 
+import java.util.Random;
+
 /**
  * Created by assaa_000 on 9/2/2014.
  */
@@ -83,6 +85,17 @@ public class TraditionalProblem extends Problem {
                 }
             }
             price+= vmPrice[vmInstances[i]]*maxtime;
+        }
+
+
+
+        Random rand = new Random();
+        if(rand.nextInt(100)<8){
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         solution.setObjective(0, avgtime);

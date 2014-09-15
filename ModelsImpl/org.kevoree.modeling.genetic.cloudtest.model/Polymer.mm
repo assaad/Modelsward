@@ -16,6 +16,8 @@ class polymer.VmInstance  {
 class polymer.Software  {
     cpuh : Double
     name : String
+    @id
+    id: Int
 }
 
 class polymer.Task  {

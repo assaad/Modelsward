@@ -98,7 +98,7 @@ public class SampleRunner {
         for (int i=0; i<TraditionalProblem.softwareCpuh.length;i++) {
             Software soft = pf.createSoftware();
             soft.setCpuh(TraditionalProblem.softwareCpuh[i]);
-            //soft.setTime(org.kevoree.modeling.genetic.cloudtest.Context.maxTime);
+            soft.setId(i);
             cloud.addSoftwares(soft);
         }
         return cloud;
@@ -140,7 +140,7 @@ public class SampleRunner {
                     System.out.print(pop.get(i).getObjective(j) + " ");
                 }
 
-        /*        Cloud c= createCloud();
+               Cloud c= createCloud();
                 Variable[] var = pop.get(i).getDecisionVariables();
                 int r= var.length/ (Context.softwareNum+1);
                 for(int k=0;k<r;k++){
@@ -168,7 +168,7 @@ public class SampleRunner {
                 double prix = new PriceFitness().evaluate(c,null);
                 TraditionalProblem ttt = new TraditionalProblem();
                 ttt.evaluate(pop.get(i));
-                System.out.print(" polymer "+ timx + " "+ prix);*/
+                System.out.print(" polymer "+ timx + " "+ prix);
                 System.out.println("");
             }
         } catch (Exception e) {

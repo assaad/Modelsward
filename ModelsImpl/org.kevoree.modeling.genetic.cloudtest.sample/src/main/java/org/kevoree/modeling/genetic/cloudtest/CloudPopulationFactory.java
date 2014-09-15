@@ -36,11 +36,15 @@ public class CloudPopulationFactory implements PopulationFactory<Cloud> {
         ArrayList<Cloud> populations = new ArrayList<Cloud>();
         for (int i = 0; i < size; i++) {
             Cloud cloud = pf.createCloud();
+
+            int counter=0;
             for(Software str: Context.cloud.getSoftwares()){
                 Software soft = pf.createSoftware();
                 soft.setName(str.getName());
                 soft.setCpuh(str.getCpuh());
                 cloud.addSoftwares(soft);
+                soft.setId(counter);
+                counter++;
                 soft.setRecursiveReadOnly();
             }
 

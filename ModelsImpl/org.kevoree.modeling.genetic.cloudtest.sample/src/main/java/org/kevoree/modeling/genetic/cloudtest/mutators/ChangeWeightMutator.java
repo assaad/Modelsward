@@ -35,6 +35,7 @@ public class ChangeWeightMutator implements MutationOperator<Cloud> {
         if(cloud.getInstances().size()==0)
             return;
 
+
         for(VmInstance v: cloud.getInstances()){
             for(Task t: v.getTasks()){
                 if(rand.nextDouble()<Context.mutationProba){
