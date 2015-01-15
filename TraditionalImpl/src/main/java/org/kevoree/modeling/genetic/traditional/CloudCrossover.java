@@ -1,6 +1,8 @@
 package org.kevoree.modeling.genetic.traditional;
 
 import jmetal.core.Solution;
+import jmetal.core.Variable;
+import jmetal.encodings.variable.ArrayReal;
 import jmetal.operators.crossover.Crossover;
 import jmetal.util.JMException;
 
@@ -22,6 +24,7 @@ public class CloudCrossover extends Crossover {
 
         offSpring[0] = new Solution(parents[0]);
         offSpring[1] = new Solution(parents[1]);
+
         return offSpring;
     }
 }

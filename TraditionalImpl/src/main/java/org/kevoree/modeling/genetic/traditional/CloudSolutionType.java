@@ -4,7 +4,9 @@ package org.kevoree.modeling.genetic.traditional;
 import jmetal.core.Problem;
 import jmetal.core.SolutionType;
 import jmetal.core.Variable;
+import jmetal.encodings.variable.ArrayReal;
 import jmetal.encodings.variable.Int;
+import jmetal.encodings.variable.Real;
 
 import java.util.Random;
 
@@ -21,15 +23,13 @@ public class CloudSolutionType extends SolutionType {
 
     @Override
     public Variable[] createVariables() throws ClassNotFoundException {
-        int r = rand.nextInt(Context.maxMachines);
 
-        Variable[] temp = new Variable[r*(Context.softwareNum+1)];
-        for(int i=0; i<r;i++){
-            temp[i]=new Int( rand.nextInt(Context.instanceNum),0,Context.instanceNum);
+        Variable[] temp= new Variable[2];
+
+        for(int i=0; i<2;i++){
+            temp[i]=new Real(0,1);
         }
-        for(int i=r; i<r*(Context.softwareNum+1);i++) {
-            temp[i]=new Int(rand.nextInt(100),0,100);
-        }
+
         return temp;
     }
 }

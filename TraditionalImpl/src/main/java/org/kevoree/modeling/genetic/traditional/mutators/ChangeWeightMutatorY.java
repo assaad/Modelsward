@@ -11,12 +11,12 @@ import java.util.Random;
 /**
  * Created by assaa_000 on 9/3/2014.
  */
-public class ChangeWeightMutator extends Mutation {
+public class ChangeWeightMutatorY extends Mutation {
     private Random rand = new Random();
 
 
 
-    public ChangeWeightMutator(HashMap<String, Object> parameters) {
+    public ChangeWeightMutatorY(HashMap<String, Object> parameters) {
         super(parameters) ;
     }
 
@@ -25,7 +25,7 @@ public class ChangeWeightMutator extends Mutation {
 
         Solution solution = (Solution) object;
         Variable[] vars = solution.getDecisionVariables();
-        vars[0].setValue(rand.nextDouble());
+        vars[1].setValue(rand.nextDouble());
         return solution;
 
     }

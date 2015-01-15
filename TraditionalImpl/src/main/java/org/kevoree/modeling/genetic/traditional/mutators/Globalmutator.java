@@ -21,19 +21,15 @@ public class Globalmutator extends Mutation {
 
     @Override
     public Object execute(Object o) throws JMException {
-        int x= rand.nextInt(3);
+        int x= rand.nextInt(2);
 
         if(x==0){
-            AddInstanceMutator ad = new AddInstanceMutator(this.param);
+            ChangeWeightMutator ad = new ChangeWeightMutator(this.param);
             return ad.execute(o);
         }
-        else if (x==1){
-            ChangeWeightMutator cw= new ChangeWeightMutator(this.param);
-            return cw.execute(o);
-        }
         else{
-            DeleteInstanceMutator dt = new DeleteInstanceMutator(this.param);
-            return dt.execute(o);
+            ChangeWeightMutatorY cw= new ChangeWeightMutatorY(this.param);
+            return cw.execute(o);
         }
     }
 }

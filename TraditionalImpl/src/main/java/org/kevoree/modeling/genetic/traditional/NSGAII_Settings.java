@@ -41,10 +41,10 @@ public class NSGAII_Settings extends Settings {
         Object [] problemParams = {"Real"};
             problem_ = problem;
         // Default settings
-        populationSize_              =20   ;
-        maxEvaluations_              = 1000 ;
-        mutationProbability_         = 0.01 ;
-        crossoverProbability_        = 0.0 ;
+        populationSize_              =1000   ;
+        maxEvaluations_              = 100000 ;
+        mutationProbability_         = 0.05 ;
+        crossoverProbability_        = 0.01 ;
         mutationDistributionIndex_   = 20 ;
         CR_                          = 1.0 ;
         F_                           = 0.5 ;
@@ -69,21 +69,14 @@ public class NSGAII_Settings extends Settings {
         algorithm.setInputParameter("populationSize",populationSize_);
         algorithm.setInputParameter("maxEvaluations",maxEvaluations_);
         algorithm.setInputParameter("crossoverProbability",0.0);
-
-
-
-
         crossover = new CloudCrossover(null);
 
 
         // Selection Operator
         parameters = null ;
         selection = SelectionFactory.getSelectionOperator("BinaryTournament2", parameters) ;
-
         Operator mutation = new Globalmutator(parameters);
 
-
-        // Add the operators to the algorithm
         algorithm.addOperator("selection",selection);
         algorithm.addOperator("crossover",crossover);
         algorithm.addOperator("mutation",mutation);

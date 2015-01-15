@@ -9,14 +9,12 @@
     <packaging>pom</packaging>
 
     <properties>
-        <kmf.version>3.5.4</kmf.version>
+        <kmf.version>3.5.12</kmf.version>
     </properties>
 
     <modules>
-		<module>ModelsImpl/org.kevoree.modeling.genetic.cloudtest.model</module>
-        <module>ModelsImpl/org.kevoree.modeling.genetic.cloudtest.sample</module>
-		<!--module>PolymerTest/org.kevoree.modeling.genetic.polytest.model</module>
-        <module>PolymerTest/org.kevoree.modeling.genetic.polytest.sample</module-->
+		<module>ModelsImpl/org.kevoree.modeling.genetic.gaussiantest.model</module>
+        <module>ModelsImpl/org.kevoree.modeling.genetic.gaussiantest.sample</module>
         <module>TraditionalImpl</module>
     </modules>
 

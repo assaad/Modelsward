@@ -1,8 +1,0 @@
-#Name , Cpuh , Ram
-SoftwareA , 19, 2
-SoftwareB , 15, 20
-SoftwareC , 10, 4
-SoftwareD , 2, 10
-SoftwareE , 27, 5
-SoftwareF , 50, 30
-SoftwareG , 127, 20
